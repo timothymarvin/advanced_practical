@@ -1,0 +1,63 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand h1 mb-0" href="{% url 'home' %}">
+      <img
+        src="{% static 'logo.png' %}"
+        alt="logo image"
+        style="width: 35px; height: 35px"
+      />TODO-APP</a
+    >
+
+    <!-- button will appear when navbar is medium screen. (md) -->
+    <button
+      type="button"
+      class="navbar-toggler"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        {% comment %} bootstrap options activate depending on page were on {%
+        endcomment %} {% comment %} if user is not authenticated, this section
+        activates {% endcomment %} {% if not request.user.is_authenticated %} 
+		{% if page == 'login' %}
+        <li class="nav-item mx-4">
+          <a class="nav-link active" href="{% url 'login' %}">Login</a>
+        </li>
+        {% else %}
+        <li class="nav-item mx-4">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        {% endif %} {% if page == 'register' %}
+        <li class="nav-item mx-4">
+          <a class="nav-link active" href="{% url 'register' %}">Register</a>
+        </li>
+        {% else %}
+        <li class="nav-item mx-4">
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </li>
+        {% endif %}
+
+		{% comment %} if authenticated comes here {% endcomment %}
+		{% else %}
+		{% if page == 'home' %}
+        <li class="nav-item mx-4">
+          <a class="nav-link active" href="{% url 'home' %}">Home</a>
+        </li>
+        {% else %}
+        <li class="nav-item mx-4">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        {% endif %}
+
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
